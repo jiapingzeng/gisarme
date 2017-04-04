@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title= title
+    link(rel='icon', href='/favicon.ico')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    block head
+  body
+    .header
+      nav.navbar-default
+        .container-fluid
+          ul.nav.navbar-nav
+            li
+              a(href='/') Home 
+            li
+              a(href='/') About 
+                span.badge lololololol
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/') Contact 
+                span.badge xd
+    block content
+    .footer
+      nav.navbar-inverse.navbar-fixed-bottom
+        .container-fluid
+          p.navbar-text ;)
+          ul.nav.navbar.navbar-nav.navbar-right
+            li
+              p.navbar-text &copy; #{new Date().getFullYear()} Jiaping Zeng
+            li
+              a(href='https://paypal.me/jiapingzeng') Feed me
+    script(src='js/jquery.js')
+    script(src='js/bootstrap.js')
+    block scripts

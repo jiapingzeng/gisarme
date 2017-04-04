@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Jiaping Zeng <jiaping@gisar.me>",
+  "license": "MIT",
+  "scripts": {
+    "postpublish": "npm install",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.16.1",
+    "bower": "^1.8.0",
+    "config": "^1.25.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.1",
+    "express": "~4.14.1",
+    "morgan": "~1.8.1",
+    "pug": "^2.0.0-beta11",
+    "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-uglify": "^2.0.1"
+  }
+}
