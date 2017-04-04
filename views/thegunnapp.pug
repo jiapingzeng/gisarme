@@ -1,5 +1,5 @@
 doctype html
-htmla
+html
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -9,3 +9,9 @@ htmla
   body
     div.container
         h2 xd
+        if data
+            ul
+                for event in data.items
+                    li=event.summary
+                else
+                    li oh noes

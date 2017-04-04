@@ -18,12 +18,17 @@ router.get('/index', (req, res, next) => {
 router.get('/get', (req, res, next) => {
     request({
         uri: GOOGLE_CALENDAR_SERVER_URL.replace('calendarId', GOOGLE_CALENDAR_ID),
-        qs: { key: GOOGLE_API_KEY },
+        qs: {
+            key: GOOGLE_API_KEY,
+            singleEvents: true,
+            orderBy: "startTime"
+        },
         method: 'GET'
     }, function (error, response, body) {
         if (!error && res.statusCode == 200) {
             console.log('successfully retrived calendar')
-            res.send(body)
+            res.render('thegunnapp', { data: JSON.parse(body.trim()) })
+            //res.send(body)
         } else {
             console.log('retriving calendar failed')
         }
