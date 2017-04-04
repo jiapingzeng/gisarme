@@ -3,9 +3,9 @@ var config = require('config')
 var request = require('request')
 var router = express.Router()
 
-var GOOGLE_CALENDAR_SERVER_URL = (process.env.SERVER_URL) ? (process.env.SERVER_URL) : config.get('serverUrl')
-var GOOGLE_CALENDAR_ID = (process.env.CALENDAR_ID) ? (process.env.CALENDAR_ID) : config.get('calendarId')
-var GOOGLE_API_KEY = (process.env.API_KEY) ? (process.env.API_KEY) : config.get('apiKey')
+var GOOGLE_CALENDAR_SERVER_URL = (process.env.GOOGLE_CALENDAR_SERVER_URL) ? (process.env.GOOGLE_CALENDAR_SERVER_URL) : config.get('serverUrl')
+var GOOGLE_CALENDAR_ID = (process.env.GOOGLE_CALENDAR_ID) ? (process.env.GOOGLE_CALENDAR_ID) : config.get('calendarId')
+var GOOGLE_API_KEY = (process.env.GOOGLE_API_KEY) ? (process.env.GOOGLE_API_KEY) : config.get('apiKey')
 
 /* GET home */
 router.get('/', (req, res, next) => {
