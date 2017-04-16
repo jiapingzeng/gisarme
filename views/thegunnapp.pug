@@ -10,8 +10,14 @@ html
     div.container
         h2 xd
         if data
-            ul
-                for event in data.items
-                    li=event.summary
-                else
-                    li oh noes
+            if data.items
+                ul
+                    for event in data.items
+                        li=event.summary
+                            ul
+                                li=event.start.date
+                                li=event.description
+                    else
+                        li oh noes
+            else
+                p data.message
