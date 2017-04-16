@@ -8,7 +8,7 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
   body
     div.container
-        h2 xd
+        h2 welcome xd
         if data
             if data.items
                 ul
@@ -19,5 +19,8 @@ html
                                 li=event.description
                     else
                         li oh noes
+                h2 that's all
             else
-                p data.message
+                p something went wrong
+        else
+            p Coming soon. Try adding /get to the end of this link to see stuff.
