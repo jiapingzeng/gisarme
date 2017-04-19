@@ -19,7 +19,7 @@ router.get('/index', (req, res, next) => {
 })
 
 router.get('/get', (req, res, next) => {
-    getCalendar(function (error, response, body) {
+    getCalendar(function (body) {
         console.log('successfully retrived calendar')
         var data = JSON.parse(body.trim())
         var calendar = copy(data)
@@ -38,7 +38,7 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/post', (req, res, next) => {
-    getCalendar(function (error, response, body) {
+    getCalendar(function (body) {
         console.log('successfully retrived calendar')
         var data = JSON.parse(body.trim())
         var calendar = copy(data)
@@ -90,7 +90,8 @@ function getCalendar(cb, err) {
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log('successfully retrived calendar')
-            fs.writeFile(__dirname + '/../public/data/thegunnapp.json', body.trim(), cb(error, response, body))
+            cb(body)
+            //fs.writeFile(__dirname + '/../public/data/thegunnapp.json', body.trim(), cb(error, response, body))
         } else {
             console.log('retriving calendar failed')
             err()
