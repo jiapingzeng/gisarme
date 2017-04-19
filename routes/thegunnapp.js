@@ -56,6 +56,7 @@ router.post('/post', (req, res, next) => {
     })
 })
 
+/*
 router.get('/post', (req, res, next) => {
     getCalendar(function() {
         console.log('sending file')
@@ -64,6 +65,7 @@ router.get('/post', (req, res, next) => {
         console.log('error')
     })    
 })
+*/
 
 function copy(o) {
    var output, v, key;
