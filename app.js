@@ -1,9 +1,18 @@
+var config = require('config')
 var express = require('express')
 var path = require('path')
 var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var schedule = require('node-schedule')
+
+var TWILIO_ACCOUNT_SID = (process.env.TWILIO_ACCOUNT_SID) ? (process.env.TWILIO_ACCOUNT_SID) : config.get('accountSid')
+var TWILIO_AUTH_TOKEN = (process.env.TWILIO_AUTH_TOKEN) ? (process.env.TWILIO_AUTH_TOKEN) : config.get('authToken')
+var TWILIO_FROM_NUMBER = (process.env.TWILIO_FROM_NUMBER) ? (process.env.TWILIO_FROM_NUMBER) : config.get('fromNumber')
+var TWILIO_TO_NUMBER = (process.env.TWILIO_TO_NUMBER) ? (process.env.TWILIO_TO_NUMBER) : config.get('toNumber')
+
+var twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 var index = require('./routes/index')
 var thegunnapp = require('./routes/thegunnapp')
@@ -24,6 +33,17 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', index)
 app.use('/thegunnapp', thegunnapp)
 app.use('/users', users)
+
+var spam = schedule.scheduleJob('0 0 * * * *', function() {
+  console.log('!')
+  twilio.messages.create({
+    to: TWILIO_TO_NUMBER,
+    from: TWILIO_FROM_NUMBER,
+    body: "This is a spam message. Thank you for reading and expect another one in an hour."
+  }, function(error, message) {
+    console.log(message.sid)
+  })
+})
 
 app.use((req, res, next) => {
   var err = new Error('Not Found')
