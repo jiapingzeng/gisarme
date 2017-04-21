@@ -19,17 +19,7 @@ router.get('/index', (req, res, next) => {
 })
 
 router.get('/get', (req, res, next) => {
-    getCalendar(function (body) {
-        console.log('successfully retrived calendar')
-        var data = JSON.parse(body.trim())
-        var calendar = copy(data)
-        calendar.items = []
-        for (var i = 0; i < data.items.length; i++) {
-            var event = data.items[i]
-            if (event.summary.toLowerCase().includes('schedule')) {
-                calendar.items.push(event)
-            }
-        }
+    getSchedule(function (calendar) {
         res.render('thegunnapp', { data: calendar })
     }, function() {
         console.log('crap something happened')
@@ -38,17 +28,7 @@ router.get('/get', (req, res, next) => {
 })
 
 router.post('/post', (req, res, next) => {
-    getCalendar(function (body) {
-        console.log('successfully retrived calendar')
-        var data = JSON.parse(body.trim())
-        var calendar = copy(data)
-        calendar.items = []
-        for (var i = 0; i < data.items.length; i++) {
-            var event = data.items[i]
-            if (event.summary.toLowerCase().includes('schedule')) {
-                calendar.items.push(event)
-            }
-        }
+    getSchedule(function (calendar) {
         res.send(calendar)
     }, function () {
         console.log('done with yo shit')
@@ -97,6 +77,21 @@ function getCalendar(cb, err) {
             err()
         }
     })
+}
+
+function getSchedule(cb, err) {
+    getCalendar(function (body) {
+        var data = JSON.parse(body.trim())
+        var calendar = copy(data)
+        calendar.items = []
+        for (var i = 0; i < data.items.length; i++) {
+            var event = data.items[i]
+            if (event.summary && event.summary.toLowerCase().includes('schedule')) {
+                calendar.items.push(event)
+            }
+        }
+        cb(calendar)
+    }, err)
 }
 
 module.exports = router
