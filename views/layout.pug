@@ -1,3 +1,6 @@
+- var isHome = title == "Home"
+- var headerStyle = isHome ? "transparent-header" : ""
+
 doctype html
 html
   head
@@ -5,33 +8,112 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title=title
     link(rel='icon', href='/favicon.ico')
-    link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    link(rel='stylesheet', href='/css/flexslider.css')
+    link(rel='stylesheet', href='/css/magnific-popup.css')
+    link(rel='stylesheet', href='/css/animate.css')
+    link(rel='stylesheet', href='/css/style.css')
     block head
   body
-    .header
-      nav.navbar-default
-        .container-fluid
-          ul.nav.navbar-nav
-            li
-              a(href='/') Home 
-            li
-              a(href='/') About 
-                span.badge lololololol
+    div(class=headerStyle, role="navigation").navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle
+            span.sr-only Toggle navigation
+            span.icon-badge
+            span.icon-badge
+            span.icon-badge
+          a(href="/").navbar-brand
+            h5(style="color: white;") GISARME
+        .navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='/') Contact 
-                span.badge xd
-    block content
-    .footer
-      nav.navbar-inverse.navbar-fixed-bottom
-        .container-fluid
-          p.navbar-text ;)
-          ul.nav.navbar.navbar-nav.navbar-right
+              a(href="/") Home
             li
-              p.navbar-text &copy; #{new Date().getFullYear()} Jiaping Zeng
+              a(href="/about") About
+            li.dropdown
+              a(href="#", data-toggle="dropdown").dropdown-toggle Apps 
+                i.fa.fa-angle-down
+              ul(role="menu", aria-labelledby="dropdownMenu").dropdown-menu.dark-dropdown
+                li
+                  a(href="/gnoter") oops
             li
-              a(href='https://paypal.me/jiapingzeng') Feed me
-    script(src='js/jquery.js')
-    script(src='js/bootstrap.js')
-    block scripts
+              a(href="/contact") Contact Us
+            li.dropdown
+              a(href="#", data-toggle="dropdown").dropdown-toggle
+                i.fa.fa-lock
+                |  Sign In
+              .dropdown-menu.dropdown-menu-right.dropdown-login-box.animated.fadeInUp
+                form(role="form")
+                  h4 advanced shit do not touch
+                  .form-group
+                    .input-group
+                      span.input-group-addon
+                        i.fa.fa-user
+                      input(type="text", placeholder="Username").form-control
+                    br
+                    .input-group
+                      span.input-group-addon
+                        i.fa.fa-lock
+                      input(type="password", placeholder="Password").form-control
+                    .checkbox.pull-left
+                      label
+                        input(type="checkbox")
+                        | Remember me
+  div(style="height: 100vh; background-color: #424242;")
+    .container
+      .text-center
+        h1(style="color: white; vertical-align: middle; line-height: 100vh;") Hi
+  block content
+  
+  //- footer#footer
+  //-   .container
+  //-     .row
+  //-       .col-md-3.col-sm-6.margin30
+  //-         .footer-col
+  //-           h3 About Gisarme
+  //-             p Hi
+  //-       .col-md-3.col-sm-6.margin30
+  //-         .footer-col
+  //-           h3 Contact
+  //-             ul.list-unstyled.contact
+  //-               li Hi
+  //-               li Hi again
+  //-       .col-md-3.col-sm-6.margin30
+  //-         .footer-col
+  //-           h3 Latest news
+  //-             ul.list-inline.f2-work
+  //-               li Jk this doesn\'t work
+  //-       .col-md-3.col-sm-6.margin30
+  //-         .footer-col
+  //-           h3 Subscribe
+  //-           p Subscribe to be notified when stuff comes up
+  //-           form(role="form").subscribe-form
+  //-             .input-group
+  //-               input(type="text", placeholder="Don\'t do dis", disabled).form-control
+  //-               span.input-group-btn
+  //-                 button(type="submit", disabled).btn.btn-theme-dark.btn-lg Ok
+  //-     .row
+  //-       .col-md-12.text-center
+  //-         .footer-btm
+  //-           span &copy; #{new Date().getFullYear()} Jiaping Zeng
+  //-           a(href='https://paypal.me/jiapingzeng') Feed me
+  //- .footer
+  //-   nav.navbar-inverse.navbar-fixed-bottom
+  //-     .container-fluid
+  //-       p.navbar-text ;)
+  //-       ul.nav.navbar.navbar-nav.navbar-right
+  //-         li
+  //-           p.navbar-text &copy; #{new Date().getFullYear()} Jiaping Zeng
+  //-         li
+  //-           a(href='https://paypal.me/jiapingzeng') Feed me
+  script(src='js/jquery.js')
+  script(src='js/bootstrap.js')
+  script(src='js/wow.js')
+  script(src='js/flexslider.js')
+  script(src='js/magnific-popup.js')
+  script(src='js/stellar.js')
+  script(src='js/sticky.js')
+  script(src='js/custom.js')
+  block scripts

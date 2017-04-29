@@ -7,19 +7,17 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
   body
     div.container
-        h2 welcome xd
+      h2 welcome xd
         if data
-            if data.items
-                ul
-                    for event in data.items
-                        li=event.summary
-                            ul
-                                li=event.start.date
-                                li=event.description
-                    else
-                        li oh noes
-                h2 that's all
-            else
-                p something went wrong
+          if data.items
+            ul
+              for event in data.items
+                li=event.summary
+                  ul
+                    li=event.start.date
+                    li=event.description
+            h2 that's all
+          else
+            p oh noes
         else
             p Coming soon. Try adding /get to the end of this link to see stuff.

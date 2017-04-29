@@ -1,6 +1,5 @@
 .vs*
 *.log*
-src
 node_modules
 bower_components
 public/data/*
