@@ -1,12 +1,20 @@
 $(window).resize(function() {
-    $(".navbar-collapse").css({ maxHeight: $(window).height() - $(".navbar-header").height() + "px" });
+    $(".navbar-collapse").css({
+        maxHeight: $(window).height() - $(".navbar-header").height() + "px" 
+    });
 });
-//sticky header on scroll
+
 $(document).ready(function() {
     $(window).load(function() {
         $(".sticky").sticky({topSpacing: 0});
     });
 });
+
+$(document).ready(function() {
+    $(".navbar-nav>.dropdown").hover(function () {
+        $(this).toggleClass("open");
+    });
+})
 
 /* ==============================================
  WOW plugin triggers animate.css on scroll
