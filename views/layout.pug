@@ -46,7 +46,7 @@ html
                 |  Sign In
               .dropdown-menu.dropdown-menu-right.dropdown-login-box.animated.fadeInUp
                 form(role="form")
-                  h4 advanced shit do not touch
+                  h4 Advanced shit do not touch
                   .form-group
                     .input-group
                       span.input-group-addon
@@ -63,10 +63,21 @@ html
                         | Remember me
   div(style="height: 100vh; background-color: #424242;")
     .container
-      .text-center
-        h1(style="color: white; vertical-align: middle; line-height: 100vh;") Hi
+      block intro
   block content
-  
+  footer#footer
+    .container
+      .row
+        .col-md-12.margin30
+          .footer-col
+            h3 nothing to see here
+            p Not kidding there really is nothing to see here
+      .row
+        .col-md-12.text-center
+          .footer-btm
+            span &copy; #{new Date().getFullYear()} Jiaping Zeng 
+            |  | 
+            a(href='https://paypal.me/jiapingzeng') Feed me
   //- footer#footer
   //-   .container
   //-     .row
@@ -98,15 +109,6 @@ html
   //-       .col-md-12.text-center
   //-         .footer-btm
   //-           span &copy; #{new Date().getFullYear()} Jiaping Zeng
-  //-           a(href='https://paypal.me/jiapingzeng') Feed me
-  //- .footer
-  //-   nav.navbar-inverse.navbar-fixed-bottom
-  //-     .container-fluid
-  //-       p.navbar-text ;)
-  //-       ul.nav.navbar.navbar-nav.navbar-right
-  //-         li
-  //-           p.navbar-text &copy; #{new Date().getFullYear()} Jiaping Zeng
-  //-         li
   //-           a(href='https://paypal.me/jiapingzeng') Feed me
   script(src='js/jquery.js')
   script(src='js/bootstrap.js')
