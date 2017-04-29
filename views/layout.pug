@@ -1,6 +1,3 @@
-- var isHome = title == "Home"
-- var headerStyle = isHome ? "transparent-header" : ""
-
 doctype html
 html
   head
@@ -16,7 +13,7 @@ html
     link(rel='stylesheet', href='/css/style.css')
     block head
   body
-    div(class=headerStyle, role="navigation").navbar.navbar-inverse.navbar-fixed-top
+    div(role="navigation").navbar.navbar-inverse.navbar-fixed-top.transparent-header
       .container
         .navbar-header
           button(type="button", data-toggle="collapse", data-target=".navbar-collapse").navbar-toggle

@@ -1,7 +1,17 @@
 extends layout
 
+block intro
+  .text-center
+    h1(style="color: white; line-height: 80vh;") Oh shit. Something went wrong.
+    h4(style="color: white; line-height: 20vh;") (you dun goofed)
 block content
-  .container
-    h1= message
-    h2= error.status
-    pre #{error.stack}
+  section.intro-text
+    .container
+      .row
+        .col-md-12.col-sm-12.text-center
+          h2= message
+          h3= error.status
+          if error.stack
+            pre #{error.stack}
+          else
+            p.lead :'(
