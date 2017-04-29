@@ -5,7 +5,10 @@
   "author": "Jiaping Zeng <jiaping@gisar.me>",
   "license": "MIT",
   "scripts": {
-    "postpublish": "npm install",
+    "gulp-default": "gulp default",
+    "bower-install": "bower install",
+    "npm-install": "npm install",
+    "postpublish": "npm-run-all npm-install bower-install gulp-default",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -18,17 +21,20 @@
     "moment": "^2.18.1",
     "morgan": "~1.8.1",
     "node-schedule": "^1.2.1",
+    "pg": "^6.1.5",
     "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "serve-favicon": "~2.3.2",
-    "twilio": "^2.11.1"
-  },
-  "devDependencies": {
+    "twilio": "^2.11.1",
+    "npm-run-all": "^4.0.2",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.1.7",
     "gulp-if": "^2.0.2",
     "gulp-less": "^3.3.0",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.1"
+    "gulp-uglify": "^2.0.1",
+    "merge-stream": "^1.0.1"
   }
 }

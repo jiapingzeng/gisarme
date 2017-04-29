@@ -6,9 +6,9 @@ var path = require('path')
 var request = require('request')
 var router = express.Router()
 
-var GOOGLE_CALENDAR_SERVER_URL = (process.env.GOOGLE_CALENDAR_SERVER_URL) ? (process.env.GOOGLE_CALENDAR_SERVER_URL) : config.get('serverUrl')
-var GOOGLE_CALENDAR_ID = (process.env.GOOGLE_CALENDAR_ID) ? (process.env.GOOGLE_CALENDAR_ID) : config.get('calendarId')
-var GOOGLE_API_KEY = (process.env.GOOGLE_API_KEY) ? (process.env.GOOGLE_API_KEY) : config.get('apiKey')
+var serverUrl = (process.env.GOOGLE_CALENDAR_SERVER_URL) ? (process.env.GOOGLE_CALENDAR_SERVER_URL) : config.get('serverUrl')
+var calendarId = (process.env.GOOGLE_CALENDAR_ID) ? (process.env.GOOGLE_CALENDAR_ID) : config.get('calendarId')
+var apiKey = (process.env.GOOGLE_API_KEY) ? (process.env.GOOGLE_API_KEY) : config.get('apiKey')
 
 router.get('/', (req, res, next) => {
     res.render('thegunnapp', { title: 'TheGunnApp' })
@@ -59,9 +59,9 @@ function copy(o) {
 
 function getCalendar(cb, err) {
     request({
-        uri: GOOGLE_CALENDAR_SERVER_URL.replace('calendarId', GOOGLE_CALENDAR_ID),
+        uri: serverUrl.replace('calendarId', calendarId),
         qs: {
-            key: GOOGLE_API_KEY,
+            key: apiKey,
             singleEvents: true,
             orderBy: "startTime",
             timeMin: moment().format()

@@ -18,6 +18,7 @@ var twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 */
 
 var index = require('./routes/index')
+var gnoter = require('./routes/gnoter')
 var thegunnapp = require('./routes/thegunnapp')
 var users = require('./routes/users')
 
@@ -34,6 +35,7 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', index)
+app.use('/gnoter', gnoter)
 app.use('/thegunnapp', thegunnapp)
 app.use('/users', users)
 

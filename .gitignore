@@ -2,5 +2,5 @@
 *.log*
 node_modules
 bower_components
-public/data/*
+public
 config

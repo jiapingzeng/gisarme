@@ -23,6 +23,7 @@
     "wow": "^1.1.2",
     "magnific-popup": "^1.1.0",
     "flexslider": "^2.6.3",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "sweetalert": "^1.1.3"
   }
 }
