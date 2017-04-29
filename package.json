@@ -5,10 +5,7 @@
   "author": "Jiaping Zeng <jiaping@gisar.me>",
   "license": "MIT",
   "scripts": {
-    "gulp-default": "gulp default",
-    "bower-install": "bower install",
-    "npm-install": "npm install",
-    "postpublish": "npm-run-all npm-install bower-install gulp-default",
+    "postpublish": "npm install",
     "start": "node ./bin/www"
   },
   "dependencies": {
