@@ -3,14 +3,17 @@ html
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    title=title
+    if title
+      title=title + ' | Gisarme'
+    else
+      title Gisarme
     link(rel='icon', href='/favicon.ico')
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
     link(rel='stylesheet', href='/css/flexslider.css')
     link(rel='stylesheet', href='/css/magnific-popup.css')
     link(rel='stylesheet', href='/css/animate.css')
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/site.css')
     block head
   body
     div(role="navigation").navbar.navbar-inverse.navbar-fixed-top.transparent-header
@@ -58,9 +61,8 @@ html
                       label
                         input(type="checkbox")
                         | Remember me
-  div(style="height: 100vh; background-color: #424242;")
-    .container
-      block intro
+  .intro
+    block intro
   block content
   footer#footer
     .container
@@ -110,5 +112,5 @@ html
   script(src='js/jquery.js')
   script(src='js/bootstrap.js')
   script(src='js/wow.js')
-  script(src='js/custom.js')
+  script(src='js/site.js')
   block scripts

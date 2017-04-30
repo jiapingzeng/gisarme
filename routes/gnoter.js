@@ -20,8 +20,9 @@ pg.connect(connectionString, function(err, client, next) {
   })
 })
 */
+
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Home' })
+  res.render('gnoter', { title: 'GNOTER' })
 })
 
 router.get('/index', (req, res, next) => {
