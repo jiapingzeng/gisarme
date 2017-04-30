@@ -51,24 +51,25 @@ html
               p.grey-text.text-lighten-4 Use GNOTER to jot down notes and access them later, on any device.
             .col.l8.s12
               h5.white-text How does it work?
-                ul(data-collapsible="accordion").collapsible.popout
-                  li
-                    .collapsible-header.blue.white-text Creating new note
-                    .collapsible-body.white
-                      p.grey-text.text-darken-3 Type in a unique key that you can memorize, then type in the content and hit the save 
-                        i.fa.fa-floppy-o
-                        |  button.
-                  li
-                    .collapsible-header.blue.white-text Accessing a note
-                    .collapsible-body.white
-                      p.grey-text.text-darken-3 Type in the key, then either click the get 
-                        i.fa.fa-search
-                        |  button or switch to a different field, and the content should appear almost instantly.
-        .footer-copyright
-          .container
-            span &copy; #{new Date().getFullYear()} Jiaping Zeng
-            span.right
-              a(href="http://paypal.me/jiapingzeng").grey-text.text-lighten-4 Feed me
+              ul(data-collapsible="accordion").collapsible.popout
+                li
+                  .collapsible-header.blue.white-text Creating new note
+                  .collapsible-body.white
+                    p.grey-text.text-darken-3 Type in a unique key that you can memorize, then type in the content and hit the save 
+                      i.fa.fa-floppy-o
+                      |  button.
+                li
+                  .collapsible-header.blue.white-text Accessing a note
+                  .collapsible-body.white
+                    p.grey-text.text-darken-3 Type in the key, then either click the get 
+                      i.fa.fa-search
+                      |  button or switch to a different field, and the content should appear almost instantly.
+        //- .footer-copyright
+        //-   .container
+        //-     span &copy; #{new Date().getFullYear()} Jiaping Zeng
+        //-     span.right
+        //-       a(href="http://jiapingzeng.com", disabled).grey-text.text-lighten-4 Visit my website
+        //-       a(href="http://paypal.me/jiapingzeng").grey-text.text-lighten-4 Feed me
   script(src='/js/jquery.js')
   script(src='/js/materialize.js')
   script(src='/js/gnoter.js')
