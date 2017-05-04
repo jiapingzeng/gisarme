@@ -9,6 +9,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "body-parser": "~1.16.1",
     "bower": "^1.8.0",
     "config": "^1.25.1",
@@ -16,9 +17,9 @@
     "debug": "~2.6.1",
     "express": "~4.14.1",
     "moment": "^2.18.1",
+    "mongodb": "^2.2.26",
     "morgan": "~1.8.1",
     "node-schedule": "^1.2.1",
-    "pg": "^6.1.5",
     "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "serve-favicon": "~2.3.2",
