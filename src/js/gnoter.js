@@ -17,7 +17,7 @@ $('#help-button-collapse').click(function () {
 function get() {
     if ($('input#key').val().length >= 5) {
         $.ajax({
-            url: window.location.origin + '/app/note/get',
+            url: window.location.origin + '/gnoter/get',
             type: 'POST',
             data: JSON.stringify({
                 key: $('input#key').val(),
@@ -28,7 +28,7 @@ function get() {
             contentType: 'application/json; charset=utf-8',
             cache: false,
             success: function (data) {
-                if (data.status) {
+                if (data) {
                     $('textarea#content').val(data.content);
                     $('textarea#content').trigger('autoresize');
                     $('textarea#content').focus();
@@ -46,7 +46,7 @@ function get() {
 function check() {
     if ($('input#key').val().length >= 5) {
         $.ajax({
-            url: window.location.origin + '/app/note/check',
+            url: window.location.origin + '/gnoter/check',
             type: 'POST',
             data: JSON.stringify($('input#key').val()),
             processData: false,
@@ -54,7 +54,7 @@ function check() {
             contentType: 'application/json; charset=utf-8',
             cache: false,
             success: function (data) {
-                if (data.status) {
+                if (data) {
                     $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> ' + data.message + '</span>');
                 } else {
                     $('#response').html('<span><i class="fa fa-times-circle fa-3x red-text" aria-hidden="true"></i> ' + data.message + '</span>');
@@ -79,7 +79,7 @@ $(function () {
     });
 
     // check
-    $('input#key').keyup(check);
+    // $('input#key').keyup(check);
 
     // get
     $('input#key').change(get);
@@ -89,7 +89,7 @@ $(function () {
     $('#note-form').submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: window.location.origin + '/app/note/save',
+            url: window.location.origin + '/gnoter/save',
             type: 'POST',
             data: JSON.stringify({
                 key: $('input#key').val(),
@@ -101,7 +101,7 @@ $(function () {
             contentType: 'application/json; charset=utf-8',
             cache: false,
             success: function (data) {
-                if (data.status) {
+                if (data) {
                     $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> ' + data.message + '</span>');
                     Materialize.toast(data.message, 4000);
                 } else {

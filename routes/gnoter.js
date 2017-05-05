@@ -1,91 +1,61 @@
 var assert = require('assert')
+var bodyParser = require('body-parser')
 var config = require('config')
 var express = require('express')
+var mongoose = require('mongoose')
 var router = express.Router()
 
-/* var connectionString = (process.env.CONNECTION_STRING) ? (process.env.CONNECTION_STRING) : config.get('connectionString')
-var mongo = require('mongodb').MongoClient
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ extended: true }))
 
-mongo.connect(connectionString, function(err, db) {
-  assert.equal(null, err)
+var connectionString = (process.env.CONNECTION_STRING) ? (process.env.CONNECTION_STRING) : config.get('connectionString')
+mongoose.connect(connectionString, function(err) {
+  if (err) {
+    throw err
+  }
   console.log('connected')
-
-  db.createCollection('gnotes', {
-    validator: {
-      $or: [
-        { key: { $type: "string" } },
-        { content: { $type: "string" } },
-        { passcode: { $type: "string" } }
-      ]
-    }
-  })
-
-  insert(db, function() {
-    index(db, function() {
-      db.close()
-    })
-  })
 })
 
-var insert = function(db, cb) {
-  var collection = db.collection('docs')
-  collection.insertMany([
-    {a: 1},
-    {a: 2},
-    {a: 3}
-  ], function(err, result) {
-    assert.equal(err, null)
-    assert.equal(3, result.result.n)
-    assert.equal(3, result.ops.length)
-    console.log('inserted')
-    cb(result)
-  })
-}
-
-var find = function(db, cb) {
-  var collection = db.collection('docs')
-  collection.find({'a': 3}).toArray(function(err, docs) {
-    assert.equal(err, null)
-    console.log('found:')
-    console.log(docs)
-    cb(docs)
-  })
-}
-
-var update = function(db, cb) {
-  var collection = db.collection('docs')
-  collection.updateOne({a: 2}, { $set: {b: 1}}, function(err, result) {
-    assert.equal(err, null)
-    assert.equal(1, result.result.n)
-    console.log('updated')
-    cb(result)
-  })
-}
-
-var remove = function(db, cb) {
-  var collection = db.collection('docs')
-  collection.deleteOne({a: 3}, function(err, result) {
-    assert.equal(err, null)
-    assert.equal(1, result.result.n)
-    console.log('removed')
-    cb(result)
-  })
-}
-
-var index = function(db, cb) {
-  db.collection('docs').createIndex({a: 1}, null, function(err, results) {
-    console.log(results)
-    cb()
-  })
-}
-*/
+var Gnote = require('../models/gnote.js')
 
 router.get('/', (req, res, next) => {
+  var key = req.param('key')
+  var passcode = req.param('passcode')
   res.render('gnoter', { title: 'GNOTER' })
 })
 
 router.get('/index', (req, res, next) => {
   res.redirect('/')
+})
+
+router.post('/get', (req, res, next) => {
+  Gnote.find({ key: req.body.key }, function(err, data) {
+    if (err) {
+      res.status(404).send({ error: 'key does not exist'})
+    }
+    var gnote = data[0]
+    if (req.body.passcode || gnote.passcode) {
+      if (req.body.passcode == gnote.passcode) {
+        res.send(gnote)
+      } else {
+        res.status(401).send({ error: 'key or passcode is incorrect' })
+      }
+    } else {
+      res.send(gnote)
+    }
+  })
+})
+
+router.post('/save', (req, res, next) => {
+  var gnote = new Gnote(req.body)
+  gnote.save(function(err) {
+    if (err) {
+      console.log(err.message)
+      res.status(500).send({ error: 'key alreay in use' })
+    } else {
+      res.status(200)
+    }
+  })
 })
 
 module.exports = router
