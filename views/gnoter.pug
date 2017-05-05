@@ -41,11 +41,18 @@ html
             a(data-delay=50, data-tooltip='Save').btn-floating.btn-large.waves-effect.waves-light.light-blue.tooltipped#submit
               i.fa.fa-floppy-o
             span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            a(data-delay=50, data-tooltip='Check').btn-floating.btn-large.waves-effect.waves-light.light-green.tooltipped#update
+            a(data-delay=50, data-tooltip='Get').btn-floating.btn-large.waves-effect.waves-light.light-green.tooltipped#update
               i.fa.fa-search
             span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             a(data-delay=50, data-tooltip='Clear').btn-floating.btn-large.waves-effect.waves-light.orange.tooltipped#clear
               i.fa.fa-eraser
+            br
+            br
+            br
+            .row#response
+              .col.s12
+                i.fa.fa-refresh.fa-spin.fa-2x.fa-fw.prefix
+                span.sr-only Loading...
     footer.page-footer.blue.darken-1#slide-up
       .row
         .col.l1.s3.right

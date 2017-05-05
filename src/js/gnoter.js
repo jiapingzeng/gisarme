@@ -32,9 +32,9 @@ function get() {
                     $('textarea#content').val(data.content);
                     $('textarea#content').trigger('autoresize');
                     $('textarea#content').focus();
-                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> Retrived</span>');
                 } else {
-                    $('#response').html('<span><i class="fa fa-exclamation-circle fa-3x orange-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                    $('#response').html('<span><i class="fa fa-exclamation-circle fa-3x orange-text" aria-hidden="true"></i> Retrive failed</span>');
                 }
             }
         });
@@ -48,16 +48,18 @@ function check() {
         $.ajax({
             url: window.location.origin + '/gnoter/check',
             type: 'POST',
-            data: JSON.stringify($('input#key').val()),
+            data: JSON.stringify({
+                key: $('input#key').val()
+            }),
             processData: false,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             cache: false,
             success: function (data) {
-                if (data) {
-                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                if (!data.error) {
+                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> Key available</span>');
                 } else {
-                    $('#response').html('<span><i class="fa fa-times-circle fa-3x red-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                    $('#response').html('<span><i class="fa fa-times-circle fa-3x red-text" aria-hidden="true"></i> Key used</span>');
                 }
             }
         });
@@ -79,7 +81,7 @@ $(function () {
     });
 
     // check
-    // $('input#key').keyup(check);
+    $('input#key').keyup(check);
 
     // get
     $('input#key').change(get);
@@ -100,12 +102,12 @@ $(function () {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             cache: false,
-            success: function (data) {
+            success: function(data) {
                 if (data) {
-                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                    $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> Saved</span>');
                     Materialize.toast(data.message, 4000);
                 } else {
-                    $('#response').html('<span><i class="fa fa-times-circle fa-3x red-text" aria-hidden="true"></i> ' + data.message + '</span>');
+                    $('#response').html('<span><i class="fa fa-times-circle fa-3x red-text" aria-hidden="true"></i> Save failed</span>');
                 }
             },
             error: function () {
