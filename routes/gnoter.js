@@ -59,7 +59,7 @@ router.post('/save', (req, res, next) => {
 
 router.post('/check', (req, res, next) => {
   Gnote.find({ key: req.body.key }, function(err, data) {
-    if (data) {
+    if (data.content) {
       res.status(200).send({ error: 'key used' })
     } else {
       res.status(200).send({ message: 'key available' })
