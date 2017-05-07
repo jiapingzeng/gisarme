@@ -17,4 +17,8 @@ router.get('/contact', (req, res, next) => {
   res.render('contact', { title: 'Contact' })
 })
 
+router.get('/note', (req, res, next) => {
+  res.redirect('/gnoter')
+})
+
 module.exports = router
