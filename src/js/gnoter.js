@@ -28,10 +28,11 @@ function get() {
             contentType: 'application/json; charset=utf-8',
             cache: false,
             success: function (data) {
-                if (data) {
+                if (!data.error) {
                     $('textarea#content').val(data.content);
                     $('textarea#content').trigger('autoresize');
                     $('textarea#content').focus();
+                    $('p#dateUpdate').text('Last updated: ' + data.updated_at.substring(0, 10))
                     $('#response').html('<span><i class="fa fa-check-circle fa-3x green-text" aria-hidden="true"></i> Retrived</span>');
                 } else {
                     $('#response').html('<span><i class="fa fa-exclamation-circle fa-3x orange-text" aria-hidden="true"></i> Retrive failed</span>');

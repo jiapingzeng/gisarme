@@ -13,7 +13,7 @@ mongoose.connect(connectionString, function(err) {
   if (err) {
     throw err
   }
-  console.log('connected')
+  console.log('connected to database')
 })
 
 var Gnote = require('../models/gnote.js')
@@ -27,7 +27,7 @@ router.get('/index', (req, res, next) => {
 })
 
 router.post('/get', (req, res, next) => {
-  Gnote.find({ key: req.body.key }, function(err, data) {
+  Gnote.find({ key: req.body.key.toLowerCase() }, function(err, data) {
     if (err) {
       res.status(404).send({ error: 'key does not exist'})
     } else {
@@ -58,7 +58,7 @@ router.post('/save', (req, res, next) => {
 })
 
 router.post('/check', (req, res, next) => {
-  Gnote.find({ key: req.body.key }, function(err, data) {
+  Gnote.find({ key: req.body.key.toLowerCase() }, function(err, data) {
     var gnote = data[0]
     if (gnote) {
       res.status(200).send({ error: 'key used' })

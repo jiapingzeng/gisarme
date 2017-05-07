@@ -15,7 +15,7 @@ html
           .nav-wrapper
             img(src="/img/note.png", width="100px")
             a.brand-logo
-            p.right v1.0-kinda-works-beta12
+            p.right v1.0-kinda-works-beta13
       br
       br
       br
@@ -26,28 +26,28 @@ html
             .row
               div(aria-hidden=true).input-field.col.l6.s12
                 i.fa.fa-key.prefix
-                input(length="30", type="text")#key
+                input(type="text", data-length=32)#key
                 label(for="key").control-label Key
               div(aria-hidden=true).input-field.col.l6.s12
                 i.fa.fa-lock.prefix
-                input(length="30", type="text")#passcode
+                input(type="password", data-length=32)#passcode
                 label(for="passcode").control-label Passcode
             .row
-              div(aria-hidden=true).input-field.col.l6.s12
+              div(aria-hidden=true).input-field.col.l12.s12
                 i.fa.fa-file-text.prefix
-                textarea(length="5000", rows="5").materialize-textarea#content
+                textarea(rows=5, data-length=5000).materialize-textarea#content
                 label(for="content").control-label Content
+              p.right#dateUpdate hi
             br
-            a(data-delay=50, data-tooltip='Save').btn-floating.btn-large.waves-effect.waves-light.light-blue.tooltipped#submit
-              i.fa.fa-floppy-o
-            span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            a(data-delay=50, data-tooltip='Get').btn-floating.btn-large.waves-effect.waves-light.light-green.tooltipped#update
-              i.fa.fa-search
-            span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            a(data-delay=50, data-tooltip='Clear').btn-floating.btn-large.waves-effect.waves-light.orange.tooltipped#clear
-              i.fa.fa-eraser
-            br
-            br
+            .row
+              a(data-delay=50, data-tooltip='Save').btn-floating.btn-large.waves-effect.waves-light.light-blue.tooltipped#submit
+                i.fa.fa-floppy-o
+              span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a(data-delay=50, data-tooltip='Get').btn-floating.btn-large.waves-effect.waves-light.light-green.tooltipped#update
+                i.fa.fa-search
+              span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a(data-delay=50, data-tooltip='Clear').btn-floating.btn-large.waves-effect.waves-light.orange.tooltipped#clear
+                i.fa.fa-eraser
             br
             .row#response
               .col.s12
@@ -59,32 +59,32 @@ html
           a.btn-flat.waves-effect.waves-light.blue.lighten-1#help-button-collapse
             i.fa.fa-caret-square-o-down.white-text#help-button-down
             i.fa.fa-caret-square-o-up.white-text.help-button-hide#help-button-up
-        .container
-          row#help-content
-            .col.l4.s12
-              h5.white-text What is this?
-              p.grey-text.text-lighten-4 Use GNOTER to jot down notes and access them later, on any device.
-            .col.l8.s12
-              h5.white-text How does it work?
-              ul(data-collapsible="accordion").collapsible.popout
-                li
-                  .collapsible-header.blue.white-text Creating new note
-                  .collapsible-body.white
-                    p.grey-text.text-darken-3 Type in a unique key that you can memorize, then type in the content and hit the save 
-                      i.fa.fa-floppy-o
-                      |  button.
-                li
-                  .collapsible-header.blue.white-text Accessing a note
-                  .collapsible-body.white
-                    p.grey-text.text-darken-3 Type in the key, then either click the get 
-                      i.fa.fa-search
-                      |  button or switch to a different field, and the content should appear almost instantly.
-        //- .footer-copyright
-        //-   .container
-        //-     span &copy; #{new Date().getFullYear()} Jiaping Zeng
-        //-     span.right
-        //-       a(href="http://jiapingzeng.com", disabled).grey-text.text-lighten-4 Visit my website
-        //-       a(href="http://paypal.me/jiapingzeng").grey-text.text-lighten-4 Feed me
+      .container
+        .row#help-content
+          .col.l4.s12
+            h5.white-text What is this?
+            p.grey-text.text-lighten-4 Use GNOTER to jot down notes and access them later, on any device.
+          .col.l8.s12
+            h5.white-text How does it work?
+            ul(data-collapsible="accordion").collapsible.popout
+              li
+                .collapsible-header.blue.white-text Creating a new note
+                .collapsible-body.white
+                  p.grey-text.text-darken-3 Type in a unique key that you can memorize, then type in the content and hit the save 
+                    i.fa.fa-floppy-o
+                    |  button.
+              li
+                .collapsible-header.blue.white-text Accessing a note
+                .collapsible-body.white
+                  p.grey-text.text-darken-3 Type in the key, then either click the get 
+                    i.fa.fa-search
+                    |  button or switch to a different field, and the content should appear almost instantly.
+        .footer-copyright
+          .container
+            span &copy; #{new Date().getFullYear()} Jiaping Zeng
+            span.right
+              // a(href="http://jiapingzeng.com", disabled).grey-text.text-lighten-4 Visit my website
+              a(href="http://paypal.me/jiapingzeng").grey-text.text-lighten-4 Feed me
   script(src='/js/jquery.js')
   script(src='/js/materialize.js')
   script(src='/js/gnoter.js')
