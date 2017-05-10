@@ -38,29 +38,38 @@ html
               ul(role="menu", aria-labelledby="dropdownMenu").dropdown-menu.dark-dropdown
                 li
                   a(href="/gnoter") Gnoter
+                li
+                  a(href="https://www.facebook.com/triggeredbot/") TriggeredBot
             li
               a(href="/contact") Contact Us
-            li.dropdown
-              a(href="#", data-toggle="dropdown").dropdown-toggle
-                i.fa.fa-lock
-                |  Sign In
-              .dropdown-menu.dropdown-menu-right.dropdown-login-box
-                form(role="form")
-                  h4 Doesn't work yet
-                  .form-group
-                    .input-group
-                      span.input-group-addon
-                        i.fa.fa-user
-                      input(type="text", placeholder="Username").form-control
-                    br
-                    .input-group
-                      span.input-group-addon
-                        i.fa.fa-lock
-                      input(type="password", placeholder="Password").form-control
-                    .checkbox.pull-left
-                      label
-                        input(type="checkbox")
-                        | Remember me
+            if !user
+              li.dropdown
+                a(href="#", data-toggle="dropdown").dropdown-toggle
+                  i.fa.fa-lock
+                  |  Sign In
+                .dropdown-menu.dropdown-menu-right.dropdown-login-box.animated.fadeInUp
+                  form(action="/users/login", method="post", role="form")
+                    h3 Log in
+                    .form-group
+                      .input-group
+                        span.input-group-addon
+                          i.fa.fa-user
+                        input(type="text", name="email" placeholder="Email").form-control
+                      .input-group
+                        span.input-group-addon
+                          i.fa.fa-lock
+                        input(type="password", name="password", placeholder="Password").form-control
+                      .checkbox.pull-left
+                        label
+                          input(type="checkbox")
+                          | Remember me (it won't)
+                      button(type="submit").btn.btn-theme-bg.pull-right Login
+                      a(href="/users/signup").btn.border-black.pull-right Signup
+            else
+              li
+                a(href='/users/profile') View "profile"
+              li
+                a(href="/users/logout") Log out
   .intro
     block intro
   block content
@@ -109,8 +118,8 @@ html
   //-         .footer-btm
   //-           span &copy; #{new Date().getFullYear()} Jiaping Zeng
   //-           a(href='https://paypal.me/jiapingzeng') Feed me
-  script(src='js/jquery.js')
-  script(src='js/bootstrap.js')
-  script(src='js/wow.js')
-  script(src='js/site.js')
+  script(src='/js/jquery.js')
+  script(src='/js/bootstrap.js')
+  script(src='/js/wow.js')
+  script(src='/js/site.js')
   block scripts

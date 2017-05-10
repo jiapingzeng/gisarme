@@ -1,0 +1,16 @@
+extends layout
+
+block intro
+  .container
+    if message.length > 0
+      div.alert.alert-danger message
+    h1 Sign up
+    form(action='/users/signup', method='post')
+      .form-group
+        label Email
+        input(type='text', name='email').form-control
+      .form-group
+        label Password
+        input(type='password', name='password').form-control
+      button(type='submit').btn.btn-lg.btn-theme-bg Sign up
+      a(href='/login').btn.btn-lg Log in

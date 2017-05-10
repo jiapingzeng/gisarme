@@ -8,14 +8,6 @@ var router = express.Router()
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }))
 
-var connectionString = (process.env.CONNECTION_STRING) ? (process.env.CONNECTION_STRING) : config.get('connectionString')
-mongoose.connect(connectionString, function(err) {
-  if (err) {
-    throw err
-  }
-  console.log('connected to database')
-})
-
 var Gnote = require('../models/gnote.js')
 
 router.get('/', (req, res, next) => {

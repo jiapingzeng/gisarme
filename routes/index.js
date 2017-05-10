@@ -21,4 +21,12 @@ router.get('/note', (req, res, next) => {
   res.redirect('/gnoter')
 })
 
+router.get('/login', (req, res, next) => {
+  res.redirect('/users/login')
+})
+
+router.get('/signup', (req, res, next) => {
+  res.redirect('/users/signup')
+})
+
 module.exports = router

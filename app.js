@@ -1,10 +1,14 @@
+var bodyParser = require('body-parser')
 var config = require('config')
+var cookieParser = require('cookie-parser')
+var flash = require('connect-flash')
 var express = require('express')
-var path = require('path')
 var favicon = require('serve-favicon')
 var logger = require('morgan')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
+var mongoose = require('mongoose')
+var passport = require('passport')
+var path = require('path')
+var session = require('express-session')
 
 /*
 var schedule = require('node-schedule')
@@ -16,6 +20,16 @@ var TWILIO_TO_NUMBER = (process.env.TWILIO_TO_NUMBER) ? (process.env.TWILIO_TO_N
 
 var twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 */
+
+var sessionSecret = process.env.SESSION_SECRET ? process.env.SESSION_SECRET : config.get('sessionSecret')
+
+var connectionString = process.env.CONNECTION_STRING ? process.env.CONNECTION_STRING : config.get('connectionString')
+mongoose.connect(connectionString, function(err) {
+  if (err) {
+    throw err
+  }
+  console.log('connected to database')
+})
 
 var index = require('./routes/index')
 var gnoter = require('./routes/gnoter')
@@ -33,6 +47,11 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(session({ secret: sessionSecret }))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
 
 app.use('/', index)
 app.use('/gnoter', gnoter)
