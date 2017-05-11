@@ -27,7 +27,7 @@ html
           a(href="/").navbar-brand
             h5(style="color: white;")#logo.animated.zoomInLeft GISARME
         .navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-right
+          ul.nav.navbar-nav.navbar-right.animated.fadeInDown
             li
               a(href="/") Home
             li
@@ -35,7 +35,7 @@ html
             li.dropdown
               a(href="#", data-toggle="dropdown").dropdown-toggle Apps 
                 i.fa.fa-angle-down
-              ul(role="menu", aria-labelledby="dropdownMenu").dropdown-menu.dark-dropdown
+              ul(role="menu", aria-labelledby="dropdownMenu").dropdown-menu.dark-dropdown.animated.fadeInDown#navMenu
                 li
                   a(href="/gnoter") Gnoter
                 li
@@ -47,7 +47,7 @@ html
                 a(href="#", data-toggle="dropdown").dropdown-toggle
                   i.fa.fa-lock
                   |  Sign In
-                .dropdown-menu.dropdown-menu-right.dropdown-login-box.animated.fadeInUp
+                .dropdown-menu.dropdown-menu-right.dropdown-login-box.animated.fadeInUp#navForm
                   form(action="/users/login", method="post", role="form")
                     h3 Log in
                     .form-group

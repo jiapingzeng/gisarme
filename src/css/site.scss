@@ -13,6 +13,13 @@
     }
 }
 
+#navForm, #navMenu {
+    -moz-animation-duration: 0.2s;
+    -o-animation-duration: 0.2s;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+}
+
 @media(max-width:767px) {
     .hinge {
         display: none !important;
