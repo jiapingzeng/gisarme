@@ -54,6 +54,7 @@ var sources = {
     name: 'site.css',
     paths: [
       paths.src.css + 'style.scss',
+      paths.src.css + 'sky-forms.css',
       paths.src.css + 'site.scss'
     ]
   }],

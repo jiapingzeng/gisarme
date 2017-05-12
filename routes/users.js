@@ -2,7 +2,7 @@ var express = require('express')
 var passport = require('passport')
 var router = express.Router()
 
-require('../config.js')(passport)
+require('../auth.js')(passport)
 
 router.get('/login', (req, res, next) => {
   res.render('login', { message: req.flash('loginMessage') })
@@ -24,7 +24,7 @@ router.post('/signup', passport.authenticate('local-signup', {
   failureFlash: true
 }))
 
-router.get('/profile', (req, res, next) => {
+router.get('/profile', isLoggedIn, (req, res, next) => {
   res.render('profile', { user: req.user} )
 })
 
@@ -39,4 +39,5 @@ function isLoggedIn(req, res, next) {
   }
   res.redirect('/')
 }
+
 module.exports = router
