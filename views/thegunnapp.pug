@@ -8,6 +8,7 @@ html
   body
     div.container
       h2 welcome xd
+        hr
         if data
           if data.items
             ul
@@ -16,6 +17,7 @@ html
                   ul
                     li=event.start.date
                     li=event.description
+            hr
             h2 that's all
           else
             p oh noes
