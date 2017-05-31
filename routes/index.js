@@ -21,6 +21,10 @@ router.get('/note', (req, res, next) => {
   res.redirect('/gnoter')
 })
 
+router.get('/triggeredbot', (req, res, next) => {
+  res.redirect('https://www.facebook.com/triggeredbot/')
+})
+
 router.get('/login', (req, res, next) => {
   res.redirect('/users/login')
 })

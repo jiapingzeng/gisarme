@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title=title
+    link(rel='stylesheet', href='/css/bootstrap.css')
+  body
+    div.container
+      h2
+        a(href='/thegunnapp') TheGunnApp
+      hr
+      if data
+        if data.items
+          for event in data.items
+            .panel.panel-default
+              .panel-heading
+                h4=moment(event.start.date).format('ddd, MMM Do, YYYY')
+              .panel-body
+                b=event.summary
+              table.table
+                for period in format(event.description)
+                  tr
+                    td=period.substring(0, period.indexOf('|'))
+                    td=period.substring(period.indexOf('|') + 1)
+      else
+        h4 Not much going on today :(
+      hr
+      a(href='/thegunnapp/today') view today
+      |  | 
+      a(href='/thegunnapp/list') view all
+      footer
+        small Only displays special schedule. Use at your own risk.

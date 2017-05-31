@@ -11,7 +11,7 @@ router.use(bodyParser.urlencoded({ extended: true }))
 var Gnote = require('../models/gnote.js')
 
 router.get('/', (req, res, next) => {
-  res.render('gnoter', { title: 'GNOTER' })
+  res.render('apps/gnoter', { title: 'GNOTER' })
 })
 
 router.get('/index', (req, res, next) => {
