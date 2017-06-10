@@ -1,0 +1,60 @@
+body {
+    text-align: center;
+    margin: 0;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 270px;
+
+    .announcement {
+        margin-bottom: 50px;
+        h1 {
+            font-size: 3em;
+        }
+    }
+
+    .board {
+        background-color: #fff;
+        color: #ab6e1d;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .cell {
+        width: 33.3%;
+        height: 90px;
+        border: 6px solid #7a7979;
+        font-size: 50px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .cell:hover {
+        background-color: #a4f91d;
+    }
+
+    .cell:first-of-type {
+        border-left-color: transparent;
+        border-top-color: transparent;
+    }
+
+    .cell:nth-of-type(2) {
+        border-top-color: transparent;
+    }
+
+    .cell:nth-of-type(3) {
+        border-right-color: transparent;
+        border-top-color: transparent;
+    }
+
+    tr:nth-of-type(3) .cell {
+        border-bottom-color: transparent;
+    }
+    
+    .controls {
+        margin-top: 50px;
+    }
+}
+

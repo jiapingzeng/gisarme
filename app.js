@@ -34,6 +34,7 @@ mongoose.connect(connectionString, function(err) {
 var index = require('./routes/index')
 var gnoter = require('./routes/gnoter')
 var thegunnapp = require('./routes/thegunnapp')
+var tictactoe = require('./routes/tictactoe')
 var users = require('./routes/users')
 
 var app = express()
@@ -56,6 +57,7 @@ app.use(flash())
 app.use('/', index)
 app.use('/gnoter', gnoter)
 app.use('/thegunnapp', thegunnapp)
+app.use('/tictactoe', tictactoe)
 app.use('/users', users)
 
 /*

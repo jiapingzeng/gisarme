@@ -51,6 +51,9 @@ var sources = {
     name: 'gnoter.css',
     paths: [ paths.src.css + 'gnoter.scss' ]
   }, {
+    name: 'tictactoe.css',
+    paths: [ paths.src.css + 'tictactoe.scss' ]
+  }, {
     name: 'site.css',
     paths: [
       paths.src.css + 'style.scss',
@@ -90,6 +93,9 @@ var sources = {
     name: 'gnoter.js',
     paths: [ paths.src.js + 'gnoter.js' ]
   }, {
+    name: 'tictactoe.js',
+    paths: [ paths.src.js + 'tictactoe.js' ]
+  }, {
     name: 'site.js',
     paths: [
       paths.src.js + 'custom.js',
@@ -105,11 +111,11 @@ gulp.task('sync', function() {
 })
 
 gulp.task('watch', ['sync'], function() {
-  gulp.watch('views/*.pug', sync.reload)
-  gulp.watch(paths.src.css + '*', function() {
+  gulp.watch('views/**/*.pug', sync.reload)
+  gulp.watch(paths.src.css + '**/*', function() {
     run('build-css', sync.reload)
   })
-  gulp.watch(paths.src.js + '*', function() {
+  gulp.watch(paths.src.js + '**/*', function() {
     run('build-js', sync.reload)
   })
 })
