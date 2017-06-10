@@ -20,7 +20,7 @@ function get() {
                 if (data.winner) {
                     updateMessage(data.winner.replace('X', '😡').replace('O', '💩') + ' wins!')
                 } else {
-                    updateMessage('Draw 😐!')
+                    updateMessage('Draw! 😐')
                 }
             } else {
                 updateMessage(data.currentPlayer.replace('X', '😡').replace('O', '💩') + '\'s turn')
