@@ -11,15 +11,16 @@ html
     header
       nav.light-green
         .nav-wrapper
-          a.brand-logo.center A N G E R Y tic tac toe
+          a.brand-logo.center tic tac toe
       br
       br
       br
     main
-      img(src='/img/spinner.png', width='100px').rotating
       .announcement
-          h3#message=currentPlayer + '\'s turn'
-      table.board.col.s6.offset-s3
+          h4 Who needs a working game when you can have a working chat?
+          //h3#message=currentPlayer + '\'s turn'
+          img(src='/img/spinner.png', width='50px').rotating
+      //table.board.col.s6.offset-s3
         tr
           td.cell#1
           td.cell#2
@@ -32,8 +33,22 @@ html
           td.cell#7
           td.cell#8
           td.cell#9
-      .controls
+      //.controls
         button.btn-large.light-green#reset new game
+      .chatbox
+        h5 
+        ul.collection.chat#activities
+        input(type='text', placeholder='set your username')#input  
+      //ul.pages
+        li.login.page
+          .form
+            h3.title Enter a name
+            input(maxlength=14).username
+        li.chat.page
+          .chat
+            ul.messages
+          input(placeholder='qwerty')#chatmessage        
     script(src='/js/jquery.js')
     script(src='/js/materialize.js')
+    script(src='/socket.io/socket.io.js')
     script(src='/js/tictactoe.js')

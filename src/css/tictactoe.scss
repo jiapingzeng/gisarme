@@ -58,6 +58,10 @@ main {
     }
 }
 
+.chat {
+    height: 300px;
+    overflow: auto;
+}
 
 @-webkit-keyframes rotating {
   from {

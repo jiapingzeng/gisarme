@@ -1,14 +1,24 @@
 var bodyParser = require('body-parser')
 var config = require('config')
 var cookieParser = require('cookie-parser')
+var favicon = require('serve-favicon')
 var flash = require('connect-flash')
 var express = require('express')
-var favicon = require('serve-favicon')
+var io = require('socket.io')()
 var logger = require('morgan')
 var mongoose = require('mongoose')
 var passport = require('passport')
 var path = require('path')
 var session = require('express-session')
+
+var index = require('./routes/index')
+var gnoter = require('./routes/gnoter')
+var thegunnapp = require('./routes/thegunnapp')
+var tictactoe = require('./routes/tictactoe')(io)
+var users = require('./routes/users')
+
+var app = express()
+app.io = io
 
 /*
 var schedule = require('node-schedule')
@@ -22,7 +32,6 @@ var twilio = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 */
 
 var sessionSecret = process.env.SESSION_SECRET ? process.env.SESSION_SECRET : config.get('sessionSecret')
-
 var connectionString = process.env.CONNECTION_STRING ? process.env.CONNECTION_STRING : config.get('connectionString')
 mongoose.connect(connectionString, function(err) {
   if (err) {
@@ -30,14 +39,6 @@ mongoose.connect(connectionString, function(err) {
   }
   console.log('connected to database')
 })
-
-var index = require('./routes/index')
-var gnoter = require('./routes/gnoter')
-var thegunnapp = require('./routes/thegunnapp')
-var tictactoe = require('./routes/tictactoe')
-var users = require('./routes/users')
-
-var app = express()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')

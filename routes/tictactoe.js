@@ -1,114 +1,71 @@
-var express = require('express')
-var router = express.Router()
+module.exports = function(io) {
+  var express = require('express')
+  var shortid = require('shortid')
+  var router = express.Router()
 
-var game = {
-  id: '',
-  currentPlayer: 'X',
-  gameOver: false,
-  winner: '',
-  board: {
-    1: '', 2: '', 3: '',
-    4: '', 5: '', 6: '',
-    7: '', 8: '', 9: ''
-  },
-  winConditions: [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9],
-    [1, 4, 7], [2, 5, 8], [3, 6, 9],
-    [1, 5, 9], [3, 5, 7]
-  ],
-  updateStatus: function() {
-    if (this.checkWin()) {
-      this.gameOver = true
-      if (this.currentPlayer == 'X') {
-        this.winner = 'O'
-      } else {
-        this.winner = 'X'
-      }
-    } else if (this.checkDraw()) {
-      this.gameOver = true
+  router.get('/', (req, res, next) => {
+      res.render('apps/tictactoe', { title: 'tic tac toe' })
+  })
+
+  router.get('/index', (req, res, next) => {
+    res.redirect('/')
+  })
+
+  var games = []
+
+  var players = []
+
+  io.on('connection', function(socket) {
+    var playerId = shortid.generate()
+    var player = {
+      id: playerId,
+      username: 'User ' + playerId
     }
-  },
-  checkWin: function() {
-    for (var i = 0; i < this.winConditions.length; i++) {
-      var board = this.board
-      var cond = this.winConditions[i]
-      if (this.checkEqual(board[cond[0]], board[cond[1]], board[cond[2]])) {
-        return true
+    players[playerId] = player
+    console.log(playerId + ' is connected')
+    socket.emit('connected')
+    
+    socket.on('set username', function(data) {
+      player.username = data.username
+      socket.broadcast.emit('user connected', { player: player })
+      console.log(player.id + ' is now named ' + player.username)
+    })
+
+    socket.on('send message', function(data) {
+      data.player = player
+      socket.emit('message', data)
+      socket.broadcast.emit('message', data)
+      console.log('sent message ' + data.message + ' from ' + data.player.username)
+    })
+
+    socket.on('new game', function(data) {
+      var gameId = shortid.generate()
+      var game = {
+        id: gameId,
+        board: {
+          1: '', 2: 'O', 3: 'X',
+          4: '', 5: 'O', 6: '',
+          7: '', 8: '', 9: ''
+        },
+        players: [ player ]
       }
-    }
-    return false
-  },
-  checkDraw: function() {
-    var board = this.board
-    for (var i = 1; i <= 9; i++) {
-      if(!board[i]) {
-        return false
+      games[gameId] = game
+      socket.broadcast.emit('game created', { game: game })
+    })
+    
+    socket.on('join game', function(data) {
+      var game = games[data.game.id]
+      if (game.players.length < 2) {
+        game.players.push(playerId)
       }
-    }
-    return true
-  },
-  checkEqual: function() {
-    for (var i = 1; i < arguments.length; i++) {
-      if (arguments[i] == '' || arguments[i] != arguments[i - 1]) {
-        return false
-      }
-    }
-    return true
-  },
-  clearBoard: function() {
-    var board = this.board
-    for (var i = 1; i <= 9; i++) {
-      board[i] = ''
-    }
-    this.gameOver = false
-    this.winner = ''
-  },
-  play: function(cell) {
-    var board = this.board
-    if (!this.gameOver && board[cell] == '') {
-      player = this.currentPlayer
-      board[cell] = player
-      if (player == 'X') {
-        this.currentPlayer = 'O'
-      } else {
-        this.currentPlayer = 'X'
-      }
-      return true
-    } else if (!this.checkDraw()) {
-      if (this.currentPlayer == 'X') {
-        this.winner = 'O'
-      } else if (this.currentPlayer == 'O') {
-        this.winner = 'X'
-      }
-    }
-    return false
-  }
+    })
+
+    socket.on('disconnect', function() {
+      console.log(playerId + ' has disconnected')
+      delete players[playerId]
+      socket.broadcast.emit('user disconnected', { player: player })
+    })
+  })
+
+  return router
 }
-
-router.get('/', (req, res, next) => {
-  res.render('apps/tictactoe', { title: 'tic tac toe', board: game.board })
-})
-
-router.get('/index', (req, res, next) => {
-  res.redirect('/')
-})
-
-router.post('/board', (req, res, next) => {
-  game.updateStatus()
-  res.status(200).send({ board: game.board, currentPlayer: game.currentPlayer, gameOver: game.gameOver, winner: game.winner })
-})
-
-router.post('/play', (req, res, next) => {
-  if (game.play(req.body.cell)) {
-    res.sendStatus(200)
-  } else {
-    res.sendStatus(400)
-  }
-})
-
-router.post('/reset', (req, res, next) => {
-  game.clearBoard()
-  res.sendStatus(200)
-})
-
-module.exports = router

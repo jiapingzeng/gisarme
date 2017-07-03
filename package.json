@@ -19,6 +19,7 @@
     "debug": "~2.6.1",
     "express": "~4.14.1",
     "express-session": "^1.15.2",
+    "express-ws": "^3.0.0",
     "moment": "^2.18.1",
     "mongoose": "^4.9.7",
     "morgan": "~1.8.1",
@@ -28,6 +29,8 @@
     "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "serve-favicon": "~2.3.2",
+    "shortid": "^2.2.8",
+    "socket.io": "^2.0.3",
     "twilio": "^2.11.1"
   },
   "devDependencies": {

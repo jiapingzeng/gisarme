@@ -87,6 +87,9 @@ var sources = {
     name: 'sweetalert.js',
     paths: [ paths.bower + 'sweetalert/dist/sweetalert.min.js' ]
   }, {
+    name: 'socket.io.js',
+    paths: [ paths.bower + 'socket.io-client/dist/socket.io.slim.js' ]
+  }, {
     name: 'wow.js',
     paths: [ paths.bower + 'wow/dist/wow.min.js' ]
   }, {
