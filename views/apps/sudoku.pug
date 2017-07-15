@@ -22,9 +22,10 @@ html
           //h3#message=currentPlayer + '\'s turn'
           img(src='/img/spinner.png', width='50px').rotating
       .lobby
-        .chatbox
+        .chatbox#chat.hide
           ul.collection.chat#activities
           input(type='text', placeholder='set your username')#input
+        button.btn-large#chatButton hide/show chat
       - for (var i = 0; i < 5; ++i) {
         br
       - }

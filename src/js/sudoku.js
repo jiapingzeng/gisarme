@@ -112,4 +112,8 @@ $(function() {
             Materialize.toast('unknown error', 5000);
         }
     })
+
+    $('#chatButton').on('click', function() {
+        $('#chat').toggleClass('hide')
+    })
 })
