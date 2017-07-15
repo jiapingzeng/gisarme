@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/index', (req, res, next) => {
-    res.redirect('/')
+    res.redirect('/thegunnapp')
 })
 
 router.get('/today', (req, res, next) => {

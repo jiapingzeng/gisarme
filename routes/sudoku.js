@@ -4,11 +4,11 @@ module.exports = function(io) {
   var router = express.Router()
 
   router.get('/', (req, res, next) => {
-      res.render('apps/tictactoe', { title: 'tic tac toe' })
+    res.render('apps/sudoku', { title: 'tic tac toe' })
   })
 
   router.get('/index', (req, res, next) => {
-    res.redirect('/')
+    res.redirect('/sudoku')
   })
 
   var games = []
@@ -38,25 +38,38 @@ module.exports = function(io) {
       console.log('sent message ' + data.message + ' from ' + data.player.username)
     })
 
-    socket.on('new game', function(data) {
+    socket.on('create game', function(data) {
       var gameId = shortid.generate()
       var game = {
         id: gameId,
-        board: {
-          1: '', 2: 'O', 3: 'X',
-          4: '', 5: 'O', 6: '',
-          7: '', 8: '', 9: ''
-        },
-        players: [ player ]
+        players: [ player ],
+        spectators: []
       }
+      console.log('game ' + gameId + ' is created')
       games[gameId] = game
-      socket.broadcast.emit('game created', { game: game })
+      socket.join(game.id)
+      socket.emit('game created', { game: game, player: player })
     })
     
     socket.on('join game', function(data) {
-      var game = games[data.game.id]
-      if (game.players.length < 2) {
-        game.players.push(playerId)
+      console.log('attempting to join game ' + data.id)
+      if (games[data.id]) {
+        var game = games[data.id]
+        socket.join(game.id)
+        if (game.players.length < 2) {
+          console.log('adding player')
+          game.players.push(playerId)
+          socket.emit('game joined', { player: player })
+          socket.emit('player joined', { player: game.players[0] })
+          socket.broadcast.to(game.id).emit('player joined', { player: player })
+        } else {
+          console.log('adding spectator')
+          game.spectators.push(playerId)
+          socket.broadcast.to(game.id).emit('spectator joined', { player: player })
+        }        
+      } else {
+        console.log('game not found')
+        socket.emit('join failed')
       }
     })
 

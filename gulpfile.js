@@ -51,8 +51,8 @@ var sources = {
     name: 'gnoter.css',
     paths: [ paths.src.css + 'gnoter.scss' ]
   }, {
-    name: 'tictactoe.css',
-    paths: [ paths.src.css + 'tictactoe.scss' ]
+    name: 'sudoku.css',
+    paths: [ paths.src.css + 'sudoku.scss' ]
   }, {
     name: 'site.css',
     paths: [
@@ -96,8 +96,8 @@ var sources = {
     name: 'gnoter.js',
     paths: [ paths.src.js + 'gnoter.js' ]
   }, {
-    name: 'tictactoe.js',
-    paths: [ paths.src.js + 'tictactoe.js' ]
+    name: 'sudoku.js',
+    paths: [ paths.src.js + 'sudoku.js' ]
   }, {
     name: 'site.js',
     paths: [
