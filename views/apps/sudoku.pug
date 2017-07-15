@@ -21,11 +21,13 @@ html
           h4 Sudoku live coming soon&trade;
           //h3#message=currentPlayer + '\'s turn'
           img(src='/img/spinner.png', width='50px').rotating
-      .lobby.hide
+      .lobby
         .chatbox
-          h5 
           ul.collection.chat#activities
           input(type='text', placeholder='set your username')#input
+      - for (var i = 0; i < 5; ++i) {
+        br
+      - }
       .game
         .row
           .col.m3.left-align
