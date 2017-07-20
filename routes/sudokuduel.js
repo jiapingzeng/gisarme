@@ -4,11 +4,11 @@ module.exports = function(io) {
   var router = express.Router()
 
   router.get('/', (req, res, next) => {
-    res.render('apps/sudoku', { title: 'tic tac toe' })
+    res.render('apps/sudokuduel', { title: 'Sudokul Duel' })
   })
 
   router.get('/index', (req, res, next) => {
-    res.redirect('/sudoku')
+    res.redirect('/sudokuduel')
   })
 
   var games = []

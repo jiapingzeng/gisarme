@@ -20,7 +20,7 @@ $(function() {
     })
     socket.on('game created', function(data) {
         console.log(data.game.id)
-        $('#gameLink').val("http://gisar.me/sudoku?id=" + data.game.id)
+        $('#gameLink').val("http://gisar.me/sudokuduel?id=" + data.game.id)
         $('#gameLink').focus().select()
         $('#copyLink').removeClass('disabled')
         //updateBoard(data.game.board)
@@ -116,4 +116,16 @@ $(function() {
     $('#chatButton').on('click', function() {
         $('#chat').toggleClass('hide')
     })
+
+
+    function resize() {
+        var cellWidth = $('.cell').width()
+        //$('.board').height(cellWidth*10)
+        $('.cell').height(cellWidth)
+        //$('.cell').css('line-height', cellWidth)
+        $('.cell').css('font-size', cellWidth/1.5)
+        //$('.boardRow').css('height', cellWidth*1.3)
+    }
+    resize()
+    $(window).on('resize', resize)
 })

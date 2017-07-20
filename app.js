@@ -14,7 +14,7 @@ var session = require('express-session')
 var index = require('./routes/index')
 var gnoter = require('./routes/gnoter')
 var thegunnapp = require('./routes/thegunnapp')
-var sudoku = require('./routes/sudoku')(io)
+var sudokuduel = require('./routes/sudokuduel')(io)
 var users = require('./routes/users')
 
 var app = express()
@@ -58,7 +58,7 @@ app.use(flash())
 app.use('/', index)
 app.use('/gnoter', gnoter)
 app.use('/thegunnapp', thegunnapp)
-app.use('/sudoku', sudoku)
+app.use('/sudokuduel', sudokuduel)
 app.use('/users', users)
 
 /*

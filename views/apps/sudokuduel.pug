@@ -7,7 +7,7 @@ html
     link(rel='icon', href='/favicon.ico')
     link(rel='stylesheet', href='/css/materialize.css')
     link(rel='stylesheet', href='/css/font-awesome.css')
-    link(rel='stylesheet', href='/css/sudoku.css')
+    link(rel='stylesheet', href='/css/sudokuduel.css')
   body
     header
       nav.light-green
@@ -18,7 +18,7 @@ html
       br
     main
       .announcement
-          h4 Sudoku live coming soon&trade;
+          h4 Sudoku duel coming soon&trade;
           //h3#message=currentPlayer + '\'s turn'
           img(src='/img/spinner.png', width='50px').rotating
       .lobby
@@ -26,28 +26,36 @@ html
           ul.collection.chat#activities
           input(type='text', placeholder='set your username')#input
         button.btn-large#chatButton hide/show chat
-      - for (var i = 0; i < 5; ++i) {
+      - for (var i = 0; i < 5; i++) {
         br
       - }
       .game
         .row
-          .col.m3.left-align
+          .col.m2.s12
             button.btn-large#createGame create game
-          .input-field.col.m7
+          .input-field.col.m9.s9
             input(type='text', placeholder='create game to generate link', readonly)#gameLink
-          .col.m2.right-align
+          .col.m1.s3
             button.btn-floating.btn-large.disabled#copyLink
               i.fa.fa-files-o
         .row
-          .col.m9
+          .col.m10.s12
             input(type='text', placeholder='enter game ID')#gameId
-          .col.m3.right-align
+          .col.m2.s12
             button.btn-large#joinGame join game
         .row.valign-wrapper.hide#gameBanner
           h4.col.s5.playerName#player1
           h2.col.s2 VS
           h4.col.s5.playerName#player2 waiting for opponent...
+        .row
+          .board.centered.hide
+            - for (var i = 0; i < 9; i++) {
+              div(id='row'+(i+1)).cellRow
+                - for (var j = 0; j < 9; j++) {
+                  div(id='cell'+(j+i*9+1)).cell
+                - }
+            - }
     script(src='/js/jquery.js')
     script(src='/js/materialize.js')
     script(src='/socket.io/socket.io.js')
-    script(src='/js/sudoku.js')
+    script(src='/js/sudokuduel.js')

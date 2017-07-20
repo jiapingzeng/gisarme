@@ -51,8 +51,8 @@ var sources = {
     name: 'gnoter.css',
     paths: [ paths.src.css + 'gnoter.scss' ]
   }, {
-    name: 'sudoku.css',
-    paths: [ paths.src.css + 'sudoku.scss' ]
+    name: 'sudokuduel.css',
+    paths: [ paths.src.css + 'sudokuduel.scss' ]
   }, {
     name: 'site.css',
     paths: [
@@ -96,8 +96,8 @@ var sources = {
     name: 'gnoter.js',
     paths: [ paths.src.js + 'gnoter.js' ]
   }, {
-    name: 'sudoku.js',
-    paths: [ paths.src.js + 'sudoku.js' ]
+    name: 'sudokuduel.js',
+    paths: [ paths.src.js + 'sudokuduel.js' ]
   }, {
     name: 'site.js',
     paths: [
