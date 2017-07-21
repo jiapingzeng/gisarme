@@ -26,6 +26,8 @@ $(function() {
         //updateBoard(data.game.board)
         $('#player1').text(data.player.username)
         $('#gameBanner').removeClass('hide')
+        console.log('starting game')
+        socket.emit('start game', { id: data.game.id })
     })
     socket.on('game joined', function(data) {
         $('#player1').text(data.player.username)
@@ -38,6 +40,14 @@ $(function() {
     })
     socket.on('player joined', function(data) {
         $('#player2').text(data.player.username)
+    })
+    socket.on('game started', function (data) {
+        var board = data.game.board
+        for (var i = 0; i < 82; i++) {
+            $('#cell' + i).text(board[i])
+        }
+        console.log(board)
+        console.log(data.game.solution)
     })
 
     function addMessage(m) {
@@ -116,15 +126,29 @@ $(function() {
     $('#chatButton').on('click', function() {
         $('#chat').toggleClass('hide')
     })
-
+    
+    $('.cell, .number').on('click', function () {
+        $('.cell').removeClass('selected')
+        $('.number').removeClass('selected')
+        var val = $(this).text()
+        if (val) {
+            $(this).addClass('selected')
+            $('.cell').each(function () {
+                var cell = $(this)
+                if (cell.text() == val) {
+                    cell.addClass('selected')
+                }
+            })
+        }
+    })
 
     function resize() {
         var cellWidth = $('.cell').width()
-        //$('.board').height(cellWidth*10)
         $('.cell').height(cellWidth)
-        //$('.cell').css('line-height', cellWidth)
         $('.cell').css('font-size', cellWidth/1.5)
-        //$('.boardRow').css('height', cellWidth*1.3)
+        var numberWidth = $('.number').width()
+        $('.number').height(numberWidth)
+        $('.number').css('font-size', numberWidth/1.5)
     }
     resize()
     $(window).on('resize', resize)

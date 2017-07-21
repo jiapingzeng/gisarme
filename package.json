@@ -31,6 +31,7 @@
     "serve-favicon": "~2.3.2",
     "shortid": "^2.2.8",
     "socket.io": "^2.0.3",
+    "sudoku": "0.0.2",
     "twilio": "^2.11.1"
   },
   "devDependencies": {

@@ -30,6 +30,18 @@ html
         br
       - }
       .game
+        .row.gameContainer
+          .board#gameBoard
+            - for (var i = 0; i < 9; i++) {
+              div(id='row'+(i+1)).cellRow
+                - for (var j = 0; j < 9; j++) {
+                  div(id='cell'+(j+i*9+1)).cell
+                - }
+            - }
+          .numbers
+            - for (var i = 0; i < 9; i++) {
+              div(id=(i+1)).number=i+1
+            - }
         .row
           .col.m2.s12
             button.btn-large#createGame create game
@@ -46,15 +58,7 @@ html
         .row.valign-wrapper.hide#gameBanner
           h4.col.s5.playerName#player1
           h2.col.s2 VS
-          h4.col.s5.playerName#player2 waiting for opponent...
-        .row
-          .board.centered.hide
-            - for (var i = 0; i < 9; i++) {
-              div(id='row'+(i+1)).cellRow
-                - for (var j = 0; j < 9; j++) {
-                  div(id='cell'+(j+i*9+1)).cell
-                - }
-            - }
+          h4.col.s5.playerName#player2 waiting for opponent...        
     script(src='/js/jquery.js')
     script(src='/js/materialize.js')
     script(src='/socket.io/socket.io.js')

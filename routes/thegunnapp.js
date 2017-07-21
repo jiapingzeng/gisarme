@@ -19,27 +19,27 @@ router.get('/index', (req, res, next) => {
 })
 
 router.get('/today', (req, res, next) => {
-    getToday(function(today) {
+    getToday(function (today) {
         res.render('apps/thegunnapp', { title: 'TheGunnApp', data: today, moment: moment, format: formatSchedule })
-    }, function() {
+    }, function () {
         console.log('oi not like dis')
         res.sendStatus(500)
-    })   
+    })
 })
 
 router.get('/list', (req, res, next) => {
-    getSchedule(function(calendar) {
+    getSchedule(function (calendar) {
         res.render('apps/thegunnapp', { title: 'TheGunnApp', data: calendar, moment: moment, format: formatSchedule })
-    }, function() {
+    }, function () {
         console.log('crap something happened')
         res.sendStatus(500)
     })
 })
 
 router.post('/list', (req, res, next) => {
-    getSchedule(function(calendar) {
+    getSchedule(function (calendar) {
         res.send(calendar)
-    }, function() {
+    }, function () {
         console.log('done with yo shit')
         res.sendStatus(500)
     })
@@ -57,13 +57,13 @@ router.get('/post', (req, res, next) => {
 */
 
 function copy(o) {
-   var output, v, key;
-   output = Array.isArray(o) ? [] : {};
-   for (key in o) {
-       v = o[key];
-       output[key] = (typeof v === "object") ? copy(v) : v;
-   }
-   return output;
+    var output, v, key;
+    output = Array.isArray(o) ? [] : {};
+    for (key in o) {
+        v = o[key];
+        output[key] = (typeof v === "object") ? copy(v) : v;
+    }
+    return output;
 }
 
 function getCalendar(cb, err) {
@@ -89,7 +89,7 @@ function getCalendar(cb, err) {
 }
 
 function getSchedule(cb, err) {
-    getCalendar(function(body) {
+    getCalendar(function (body) {
         var data = JSON.parse(body.trim())
         var calendar = copy(data)
         calendar.items = []
@@ -104,7 +104,7 @@ function getSchedule(cb, err) {
 }
 
 function getToday(cb, err) {
-    getSchedule(function(schedule) {
+    getSchedule(function (schedule) {
         var today = copy(schedule)
         today.items = []
         var date = moment().format('YYYY-MM-DD')
@@ -123,7 +123,7 @@ function formatSchedule(s) {
     var l = 0
     for (var i = 0; i < s.length; i++) {
         if (s[i] == ')') {
-    	    a.push(s.substring(l, i + 1))
+            a.push(s.substring(l, i + 1))
             l = i + 1
         }
     }
