@@ -1,5 +1,7 @@
 $(function() {
     var socket = io()
+    var board
+    var solution
     socket.on('connected', function(data) {
         console.log('connected to server')
         //$('#activities').append('<li>You have connected</li>')
@@ -42,12 +44,12 @@ $(function() {
         $('#player2').text(data.player.username)
     })
     socket.on('game started', function (data) {
-        var board = data.game.board
-        for (var i = 0; i < 82; i++) {
-            $('#cell' + i).text(board[i])
+        board = data.game.board
+        solution = data.game.solution
+        for (var i = 0; i < 81; i++) {
+            var cell = $('#cell' + (i + 1))
+            cell.text(board[i])
         }
-        console.log(board)
-        console.log(data.game.solution)
     })
 
     function addMessage(m) {
@@ -128,17 +130,38 @@ $(function() {
     })
     
     $('.cell, .number').on('click', function () {
-        $('.cell').removeClass('selected')
-        $('.number').removeClass('selected')
-        var val = $(this).text()
-        if (val) {
-            $(this).addClass('selected')
-            $('.cell').each(function () {
-                var cell = $(this)
-                if (cell.text() == val) {
-                    cell.addClass('selected')
+        if (board && solution) {
+            var selected = $('.selected').first().text()
+            var val = $(this).text()
+            if ($(this).hasClass('incorrect')) {
+                $(this).text('')
+                $(this).removeClass('incorrect')
+                return
+            }
+            if (val) {                           
+                if (val != selected) {
+                    $('.cell').removeClass('selected')
+                    $('.number').removeClass('selected')
+                    $(this).addClass('selected')
+                    $('.cell').each(function () {
+                        var cell = $(this)
+                        if (cell.text() == val) {
+                            cell.addClass('selected')
+                        }
+                    })
                 }
-            })
+            } else {
+                if (selected) {
+                    var id = $(this).attr('id').substring(4)
+                    board[id - 1] = selected
+                    $(this).text(selected)
+                    if (solution[id - 1] == selected) {
+                        $(this).addClass('selected')
+                    } else {
+                        $(this).addClass('incorrect')
+                    }
+                }
+            }
         }
     })
 

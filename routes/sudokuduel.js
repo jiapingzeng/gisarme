@@ -4,7 +4,7 @@ module.exports = function (io) {
     var sudoku = require('sudoku')
 
     var router = express.Router()
-    
+
     router.get('/', (req, res, next) => {
         res.render('apps/sudokuduel', { title: 'Sudokul Duel' })
     })
@@ -13,6 +13,17 @@ module.exports = function (io) {
         res.redirect('/sudokuduel')
     })
 
+    function normalizePuzzle (puzzle) {
+        var fixed = []
+        for (var i = 0; i < puzzle.length; i++) {
+            if (puzzle[i] != null) {
+                fixed[i] = puzzle[i] + 1
+            }
+        }
+        console.log(fixed)
+        return fixed
+    }
+    
     var games = []
 
     var players = []
@@ -82,8 +93,8 @@ module.exports = function (io) {
                 if (!game.board) {
                     console.log('making puzzle')
                     var puzzle = sudoku.makepuzzle()
-                    game.board = puzzle
-                    game.solution = sudoku.solvepuzzle(puzzle)
+                    game.board = normalizePuzzle(puzzle)
+                    game.solution = normalizePuzzle(sudoku.solvepuzzle(puzzle))
                 }
                 socket.emit('game started', { game: game })
                 socket.broadcast.to(game.id).emit('game started', { game: game })

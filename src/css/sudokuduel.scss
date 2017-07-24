@@ -15,10 +15,19 @@ main {
         }
     }
 
+    .game {
+        h2 {
+            font-size: 2em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+    }
+
     .gameContainer {
         width: 100%;
         max-width: 540px;
-
     }
 
     .board {
@@ -49,7 +58,16 @@ main {
     }
 
     .selected {
-        background-color: rgba(6, 255, 19, 0.3);
+        background-color: rgba(6, 255, 19, 0.4);
+        //background-color: rgba(255, 216, 0, 0.4);
+    }
+
+    .correct {
+        background-color: rgba(6, 255, 19, 0.4);
+    }
+
+    .incorrect {
+        background-color: rgba(255, 0, 0, 0.4) !important;
     }
 
     .number {
@@ -61,10 +79,9 @@ main {
         border-radius: 100%;
         margin-right: 0.9%;
 
-        &:hover{
-            color: white;
-            background-color: grey;
-            border: 1px solid grey;
+        &:hover {
+            //color: white;
+            background-color: rgba(53, 207, 255, 0.3);
         }
     }
 
@@ -93,6 +110,7 @@ main {
     transform: rotate(360deg);
   }
 }
+
 @keyframes rotating {
   from {
     -webkit-transform-origin: 50% 55.2%;
