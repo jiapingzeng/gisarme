@@ -20,7 +20,6 @@ module.exports = function (io) {
                 fixed[i] = puzzle[i] + 1
             }
         }
-        console.log(fixed)
         return fixed
     }
     

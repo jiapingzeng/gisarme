@@ -76,7 +76,16 @@ $(function() {
             vars[hash[0]] = hash[1];
         }
         return vars;
-    }   
+    }
+    function arraysEqual(a, b) {
+        if (a === b) return true;
+        if (a == null || b == null) return false;
+        if (a.length != b.length) return false;
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    }
 
     var hasUsername = false
 
@@ -154,12 +163,15 @@ $(function() {
             } else {
                 if (selected) {
                     var id = $(this).attr('id').substring(4)
-                    board[id - 1] = selected
+                    board[id - 1] = parseInt(selected)
                     $(this).text(selected)
                     if (solution[id - 1] == selected) {
                         $(this).addClass('selected')
                     } else {
                         $(this).addClass('incorrect')
+                    }
+                    if (arraysEqual(board, solution)) {
+                        window.alert('You won!')
                     }
                 }
             }
