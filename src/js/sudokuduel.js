@@ -136,6 +136,7 @@ $(function() {
             if ($(this).hasClass('incorrect')) {
                 $(this).text('')
                 $(this).removeClass('incorrect')
+                $(this).removeClass('selected')
                 return
             }
             if (val) {                           
