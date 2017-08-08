@@ -22,7 +22,8 @@ router.get('/note', (req, res, next) => {
 })
 
 router.get('/triggeredbot', (req, res, next) => {
-    res.redirect('https://www.facebook.com/triggeredbot/')
+    res.render('apps/triggeredbot', { title: 'TriggeredBot' })
+    //res.redirect('https://www.facebook.com/triggeredbot/')
 })
 
 router.get('/login', (req, res, next) => {
