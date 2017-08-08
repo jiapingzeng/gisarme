@@ -13,6 +13,16 @@ module.exports = function (io) {
         res.redirect('/sudokuduel')
     })
 
+    function fixPuzzle (puzzle) {
+        var fixed = puzzle
+        for (var i = 0; i < puzzle.length; i++) {
+            if (puzzle[i] != null) {
+                fixed[i] = puzzle[i] + 1
+            }
+        }
+        return fixed
+    }
+    
     var games = []
 
     var players = []
@@ -81,7 +91,8 @@ module.exports = function (io) {
                 var game = games[data.id]
                 if (!game.board) {
                     console.log('making puzzle')
-                    var puzzle = sudoku.makepuzzle()
+                    var puzzle = fixPuzzle(sudoku.makepuzzle())
+                    console.log(puzzle)
                     game.board = puzzle
                     game.solution = sudoku.solvepuzzle(puzzle)
                 }

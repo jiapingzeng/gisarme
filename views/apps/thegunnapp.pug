@@ -9,6 +9,9 @@ html
     div.container
       h2
         a(href='/thegunnapp') TheGunnApp
+      h4 (Only shows alternate schedules. For regular schedule, see 
+        a(href='http://gunn.pausd.org/bell-schedule') here
+        | )
       hr
       if data
         if data.items
@@ -23,8 +26,8 @@ html
                   tr
                     td=period.substring(0, period.indexOf('|'))
                     td=period.substring(period.indexOf('|') + 1)
-      else
-        h4 Not much going on today :(
+        else
+          h4 Not much going on today :(
       hr
       a(href='/thegunnapp/today') view today
       |  | 
