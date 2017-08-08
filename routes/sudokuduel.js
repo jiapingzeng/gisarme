@@ -91,16 +91,9 @@ module.exports = function (io) {
                 var game = games[data.id]
                 if (!game.board) {
                     console.log('making puzzle')
-<<<<<<< HEAD
-                    var puzzle = fixPuzzle(sudoku.makepuzzle())
-                    console.log(puzzle)
-                    game.board = puzzle
-                    game.solution = sudoku.solvepuzzle(puzzle)
-=======
                     var puzzle = sudoku.makepuzzle()
                     game.board = normalizePuzzle(puzzle)
                     game.solution = normalizePuzzle(sudoku.solvepuzzle(puzzle))
->>>>>>> 7e56da9f5d888abf219523ea09fe58254c73a64d
                 }
                 socket.emit('game started', { game: game })
                 socket.broadcast.to(game.id).emit('game started', { game: game })
