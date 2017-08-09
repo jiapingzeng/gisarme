@@ -5,7 +5,7 @@ var router = express.Router()
 require('../auth.js')(passport)
 
 router.get('/login', (req, res, next) => {
-    res.render('login', { message: req.flash('loginMessage') })
+    res.render('user/login', { message: req.flash('loginMessage') })
 })
 
 router.post('/login', passport.authenticate('local-login', {
@@ -15,7 +15,7 @@ router.post('/login', passport.authenticate('local-login', {
 }))
 
 router.get('/signup', (req, res, next) => {
-    res.render('signup', { message: req.flash('signupMessage') })
+    res.render('user/signup', { message: req.flash('signupMessage') })
 })
 
 router.post('/signup', passport.authenticate('local-signup', {
@@ -25,7 +25,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 }))
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
-    res.render('profile', { user: req.user })
+    res.render('user/profile', { user: req.user })
 })
 
 router.get('/logout', (req, res, next) => {

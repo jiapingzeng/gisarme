@@ -171,12 +171,17 @@ $(function() {
                         $(this).addClass('incorrect')
                     }
                     if (arraysEqual(board, solution)) {
+                        gameFinished()
                         window.alert('You won!')
                     }
                 }
             }
         }
     })
+
+    function gameFinished() {
+        socket.emit('game finished')
+    }
 
     function resize() {
         var cellWidth = $('.cell').width()
