@@ -134,7 +134,7 @@ $(function() {
         }
     })
 
-    $('#chatButton').on('click', function() {
+    $('#chatButton').on('click', function () {
         $('#chat').toggleClass('hide')
     })
     
@@ -172,7 +172,6 @@ $(function() {
                     }
                     if (arraysEqual(board, solution)) {
                         gameFinished()
-                        window.alert('You won!')
                     }
                 }
             }
@@ -180,6 +179,10 @@ $(function() {
     })
 
     function gameFinished() {
+        window.alert('You won!')
+        $('.cellRow').addClass('hide')
+        $('.numbers').addClass('hide')
+        $('.board').append('<h1>You won!</h1><p>(no you cannot restart the game without refreshing the page)')
         socket.emit('game finished')
     }
 

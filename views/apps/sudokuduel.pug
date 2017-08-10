@@ -19,6 +19,7 @@ html
     main
       .announcement
           h4 Sudoku duel coming soon&trade;
+          p multiplayer basically doesn't work as of now
           //h3#message=currentPlayer + '\'s turn'
           img(src='/img/spinner.png', width='50px').rotating
       .lobby
@@ -58,7 +59,13 @@ html
           .col.m10.s12
             input(type='text', placeholder='enter game ID')#gameId
           .col.m2.s12
-            button.btn-large#joinGame join game      
+            button.btn-large#joinGame join game     
+    footer.page-footer.light-green
+      .footer-copyright
+        .container
+          p &copy Jiaping Zeng | 
+            a(href='https://github.com/jiapingzeng/gisarme') View source
+            |  - contains highly inefficient code. Viewer discretion advised.
     script(src='/js/jquery.js')
     script(src='/js/materialize.js')
     script(src='/socket.io/socket.io.js')
