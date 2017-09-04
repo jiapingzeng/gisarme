@@ -26,6 +26,10 @@ router.get('/triggeredbot', (req, res, next) => {
     //res.redirect('https://www.facebook.com/triggeredbot/')
 })
 
+router.get('/privacypolicy', (req, res, next) => {
+    res.render('privacypolicy', { title: 'Privacy Policy' })
+})
+
 router.get('/login', (req, res, next) => {
     res.redirect('/users/login')
 })
